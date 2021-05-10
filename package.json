@@ -1,0 +1,72 @@
+{
+    "name": "tdx-heroku-demo-2021",
+    "description": "My amazing LWC app",
+    "version": "0.0.1",
+    "author": "Eric Chen",
+    "bugs": "https://github.com/ericc572/{repo}/issues",
+    "dependencies": {
+        "compression": "^1.7.4",
+        "express": "^4.17.1",
+        "helmet": "^4.6.0"
+    },
+    "devDependencies": {
+        "eslint": "^7.26.0",
+        "husky": "^6.0.0",
+        "lint-staged": "^11.0.0",
+        "lwc-services": "^3.0.4",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.3.0"
+    },
+    "engines": {
+        "node": ">=10.13.0",
+        "npm": ">=6.4.1",
+        "yarn": ">=1.9.4"
+    },
+    "homepage": "https://github.com/Eric Chen/tdx-heroku-demo-2021",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "keywords": [
+        "lwc"
+    ],
+    "license": "MIT",
+    "lint-staged": {
+        "**/*.{css,html,js,json,md,ts,yaml,yml}": [
+            "prettier --write"
+        ],
+        "./src/**/*.js": [
+            "eslint"
+        ]
+    },
+    "nodemonConfig": {
+        "watch": [
+            "src/server/**/*.js"
+        ],
+        "ext": "js",
+        "ignore": [
+            "src/**/*.spec.js",
+            "src/**/*.test.js"
+        ],
+        "exec": "node ./src/server/api.js"
+    },
+    "repository": "Eric Chen/tdx-heroku-demo-2021",
+    "scripts": {
+        "build": "lwc-services build -m production",
+        "build:development": "lwc-services build",
+        "lint": "eslint ./src/**/*.js",
+        "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
+        "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
+        "serve": "run-p serve:client serve:api",
+        "serve:api": "node src/server/api.js",
+        "serve:client": "node scripts/server.js",
+        "test:unit": "lwc-services test:unit",
+        "test:unit:coverage": "lwc-services test:unit --coverage",
+        "test:unit:debug": "lwc-services test:unit --debug",
+        "test:unit:watch": "lwc-services test:unit --watch",
+        "watch": "run-p watch:client watch:server",
+        "watch:client": "lwc-services watch",
+        "watch:server": "nodemon"
+    }
+}
