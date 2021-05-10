@@ -1,9 +1,16 @@
 <template>
   <template if:true={session}>
-    <h2><a href="#" onclick={handleSessionsClick}>Sessions</a> &gt; {session.name}</h2>
-    <p class="icon time">{session.dateTime}</p>
-    <p class="icon room">{session.room}</p>
-    <h3>Abstract</h3>
-    <div class="abstract">{session.description}</div>
+    <h2><a href="#" onclick={handleSessionsClick}>Cases</a> &gt; {session.casenumber}</h2>
+    <h3> Subject: </h3>
+    <p class="title"> {session.subject}</p>
+    <h3>Email</h3>
+    <p class="email"> {session.contactemail}</p>
+    <h3>Date Created</h3>
+    <div class="abstract">{session.createddate}</div>
+    <h3>Priority</h3>
+    <div class="abstract">{session.priority}</div>
+    <h3>Status</h3>
+    <div class="abstract">{session.status}</div>
+    
   </template>
 </template>

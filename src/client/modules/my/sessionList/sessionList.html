@@ -1,20 +1,26 @@
 <template>
   <div class="list">
-    <input type="search" placeholder="Search sessions..." oninput={handleSearchKeyInput} />
+    <input type="search" placeholder="Search cases..." oninput={handleSearchKeyInput} />
 
     <template for:each={sessions} for:item="session" for:index="index">
       <a key={session.id} class="session" data-index={index} onclick={handleSessionClick}>
         <div>
-          <p class="title">{session.name}</p>
-          <p class="icon time">{session.dateTime}</p>
-          <p class="icon room">{session.room}</p>
+          <b>Subject Name:</b> <br/>
+          <p class="subject">{session.subject}</p>
+          <br/> <br/>
+          <b> Case No: </b> 
+          <p class="case no">{session.casenumber}</p>
+<!-- 
+          <br/> <br/>
+          <b> Email: </b> 
+          <p class="email">{session.contactemail}</p> -->
         </div>
-        <div class="speaker-pictures">
+        <!-- <div class="speaker-pictures">
           <template for:each={session.speakers} for:item="speaker">
             <img key={speaker.id} src={speaker.pictureUrl}
               alt={speaker.name} title={speaker.name}>
           </template>
-        </div>
+        </div> -->
       </a>      
     </template>
   </div>

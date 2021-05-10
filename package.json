@@ -7,9 +7,7 @@
     "dependencies": {
         "compression": "^1.7.4",
         "express": "^4.17.1",
-        "helmet": "^4.6.0"
-    },
-    "devDependencies": {
+        "helmet": "^4.6.0",
         "eslint": "^7.26.0",
         "husky": "^6.0.0",
         "lint-staged": "^11.0.0",
