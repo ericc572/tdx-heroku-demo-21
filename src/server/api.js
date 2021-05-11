@@ -1,9 +1,12 @@
 // Simple Express server setup to serve for local testing/dev API server
+require('dotenv').config()
 
 const compression = require('compression');
 const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
+const Router = require('express-promise-router');
+const db = require('../db')
 
 const app = express();
 app.use(helmet());
@@ -19,9 +22,16 @@ app.use(/^(?!\/api).+/, (req, res) => {
     res.sendFile(path.resolve(DIST_DIR, 'index.html'));
 });
 
-app.get('/api/v1/endpoint', (req, res) => {
-    res.json({ success: true });
-});
+const getCases = (request, response) => {
+    db.query('SELECT * FROM salesforce.case', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+}
+
+app.route('/api/cases').get(getCases)
 
 app.listen(PORT, () =>
     console.log(
