@@ -1,4 +1,5 @@
-const URL = 'https://heroku-connect-eric.herokuapp.com/api/cases';
+const URL = `/api/cases`;
+
 let sessions = [];
 export const getSessions = () => fetch(URL)
   .then(response => {
@@ -8,6 +9,7 @@ export const getSessions = () => fetch(URL)
     return response.json();
   })
   .then(result => {
+    console.log(result)
     sessions = result.data;
     return sessions;
   });

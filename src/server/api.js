@@ -1,19 +1,26 @@
 // Simple Express server setup to serve for local testing/dev API server
-require('dotenv').config()
+// require('dotenv').config()
 
 const compression = require('compression');
 const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
-const Router = require('express-promise-router');
-const db = require('../db')
+const { Client } = require('pg');
 
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
 const app = express();
 app.use(helmet());
 app.use(compression());
 
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 5000;
 const DIST_DIR = './dist';
 
 app.use(express.static(DIST_DIR));
@@ -22,13 +29,11 @@ app.use(/^(?!\/api).+/, (req, res) => {
     res.sendFile(path.resolve(DIST_DIR, 'index.html'));
 });
 
-const getCases = (request, response) => {
-    db.query('SELECT * FROM salesforce.case', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
+const getCases = (req, response) => {
+    client.query('SELECT * from salesforce.case;', (err, results) => {
+        if (err) throw err;
+        response.status(200).json({ "data": results.rows});
+    });
 }
 
 app.route('/api/cases').get(getCases)
