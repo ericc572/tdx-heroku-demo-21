@@ -1,27 +1,17 @@
 <template>
-  <div class="list">
-    <input type="search" placeholder="Search cases..." oninput={handleSearchKeyInput} />
-
-    <template for:each={sessions} for:item="session" for:index="index">
-      <a key={session.id} class="session" data-index={index} onclick={handleSessionClick}>
-        <div>
-          <b>Subject Name:</b> <br/>
-          <p class="subject">{session.subject}</p>
-          <br/> <br/>
-          <b> Case No: </b> 
-          <p class="case no">{session.casenumber}</p>
-<!-- 
-          <br/> <br/>
-          <b> Email: </b> 
-          <p class="email">{session.contactemail}</p> -->
-        </div>
-        <!-- <div class="speaker-pictures">
-          <template for:each={session.speakers} for:item="speaker">
-            <img key={speaker.id} src={speaker.pictureUrl}
-              alt={speaker.name} title={speaker.name}>
-          </template>
-        </div> -->
-      </a>      
-    </template>
-  </div>
+    <!-- <ui-card title="List of Cases"> -->
+      <h2>  Open Cases </h2>
+      <input type="search" placeholder="Search open cases..." oninput={handleSearchKeyInput} />
+        <template for:each={sessions} for:item="session" for:index="index">
+          <a key={session.id} class="session" data-index={index} onclick={handleSessionClick}>
+            <div>
+              <b>Subject Name:</b> <br/>
+              <p class="subject">{session.subject}</p>
+              <br/> <br/>
+              <b> Case No: </b> 
+              <p class="case no">{session.casenumber}</p>
+            </div>
+          </a>
+        </template>
+    <!-- </ui-card> -->
 </template>

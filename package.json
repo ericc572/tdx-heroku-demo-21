@@ -6,9 +6,9 @@
     "bugs": "https://github.com/ericc572/{repo}/issues",
     "dependencies": {
         "compression": "^1.7.4",
+        "eslint": "^7.26.0",
         "express": "^4.17.1",
         "helmet": "^4.6.0",
-        "eslint": "^7.26.0",
         "husky": "^6.0.0",
         "lint-staged": "^11.0.0",
         "lwc-services": "^3.0.4",
@@ -56,15 +56,16 @@
         "lint": "eslint ./src/**/*.js",
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
-        "serve": "run-p serve:client serve:api",
+        "serve": "node src/server/api.js",
         "serve:api": "node src/server/api.js",
         "serve:client": "node scripts/server.js",
         "test:unit": "lwc-services test:unit",
         "test:unit:coverage": "lwc-services test:unit --coverage",
         "test:unit:debug": "lwc-services test:unit --debug",
         "test:unit:watch": "lwc-services test:unit --watch",
-        "watch": "run-p watch:client watch:server",
+        "watch": "lwc-services watch --mode=production -p",
         "watch:client": "lwc-services watch",
+        "watch:production": "lwc-services watch --mode=production",
         "watch:server": "nodemon"
     }
 }
