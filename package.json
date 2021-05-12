@@ -66,7 +66,7 @@
         "test:unit:coverage": "lwc-services test:unit --coverage",
         "test:unit:debug": "lwc-services test:unit --debug",
         "test:unit:watch": "lwc-services test:unit --watch",
-        "watch": "lwc-services watch --mode=production -p",
+        "watch": "lwc-services watch --mode=production",
         "watch:client": "lwc-services watch",
         "watch:production": "lwc-services watch --mode=production",
         "watch:server": "nodemon"

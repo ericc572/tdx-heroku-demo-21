@@ -36,7 +36,21 @@ const getCases = (req, response) => {
     });
 }
 
-app.route('/api/cases').get(getCases)
+const updateCase = (req, response) => {
+    const { status, case_number } = req.body
+    client.query(
+        'UPDATE salesforce.case SET status=$1 WHERE casenumber=$2',
+        [status, case_number],
+        (error) => {
+          if (error) {
+            throw error
+          }
+          response.status(201).json({status: 'success', message: `Case updated with status ${status}.`})
+        },
+    )
+}
+
+app.route('/api/cases').get(getCases).patch(updateCase);
 
 app.listen(PORT, () =>
     console.log(

@@ -1,6 +1,6 @@
 <template>
     <!-- <ui-card title="List of Cases"> -->
-      <h2>  Open Cases </h2>
+      <h2>  Eric's Open Cases (52) </h2>
       <input type="search" placeholder="Search open cases..." oninput={handleSearchKeyInput} />
         <template for:each={sessions} for:item="session" for:index="index">
           <a key={session.id} class="session" data-index={index} onclick={handleSessionClick}>

@@ -1,6 +1,8 @@
 <template>
   <template if:true={session}>
-    <h2><a href="#" onclick={handleSessionsClick}>Cases</a> &gt; {session.casenumber}</h2>
+    <h2><a href="#" onclick={handleSessionsClick}>Cases </a> &gt;  
+      <div class="casenumber"> {session.casenumber} </div> 
+    </h2>    
 
     <h3> Subject: </h3>
     <p class="title"> {session.subject}</p>
@@ -15,13 +17,21 @@
     <div class="abstract">{session.priority}</div>
 
     <h3>Status</h3>
-    <!-- <div class="abstract">{session.status}</div> -->
-    <select id="status" name="status">
+    <select name="status-dropdown" id="status-dropdown">
       <option value="open">Open</option>
       <option value="pending">Pending</option>
       <option value="working">Working</option>
       <option value="closed">Closed</option>
     </select>
-    <input type="submit" value="Submit">
+
+    <input id="update" type="submit" value="Update" onclick={saveToSalesforce}>
+
+    <h3>Write a Response below</h3>
+    <textarea id="response" name="response_custom" rows="4" cols="50">
+    </textarea>
+    <br/> <br/>
+    <input type="submit" value="Save">
+
+
   </template>
 </template>

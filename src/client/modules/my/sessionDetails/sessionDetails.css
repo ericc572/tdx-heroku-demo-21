@@ -36,13 +36,10 @@ h3 {
   font-size: 1.1rem;
   margin: 1.5rem 0 0.5rem 0;
 }
-.list-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-.speaker-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0 -0.5rem;
+
+.casenumber {
+  font-style: italic;
+  width:50px;
+  height:20px;
+  display:inline-block;
 }
