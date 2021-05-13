@@ -10,6 +10,10 @@ export default class SessionDetails extends LightningElement {
   get sessionId() {
     return this._sessionId;
   }
+  
+  handleGetSelectedValue(event) {
+    console.log(event.target.value);
+  }
 
   handleSessionsClick() {
     const navigateEvent = new CustomEvent('navigate', {
@@ -20,7 +24,10 @@ export default class SessionDetails extends LightningElement {
     this.dispatchEvent(navigateEvent);
   }
 
-  async saveToSalesforce() {
+  async saveToSalesforce(event) {
+    //here is the value when the button is clicked
+    console.log(event.target.value);
+    
     console.log("writing back to my db then back to salesforce...");
 
     const status = this.document.getElementById('status-dropdown');
@@ -31,6 +38,10 @@ export default class SessionDetails extends LightningElement {
     console.log(case_no);
     // console.log(sessionId());
     // const case_id = sessionId();
+    
+    // this could be the data
+    //  let data = event.target.value;
+    
     const data = { status: status.value, case_number: case_no };
     const url = '/api/cases';
 
